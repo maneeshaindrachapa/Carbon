@@ -70,6 +70,14 @@ export class AuthService {
     });
   }
 
+  public getCart(){
+    return this.http.post("http://192.168.8.100/carbon/api/getCart.php",{"username":this.username}).map(res=>res.json());
+  }
+
+  public removeCart(cart_id){
+    return this.http.post("http://192.168.8.100/carbon/api/removeCart.php",{"cart_id":cart_id}).map(res=>res.json());
+  }
+
   public addToCart(id,price,quantity){
     return this.http.post("http://192.168.8.100/carbon/api/addToCart.php",{"username":this.username,"id":id,"price":price,"quantity":quantity}).map(res=>res.json());
   }

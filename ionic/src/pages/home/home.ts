@@ -69,6 +69,9 @@ export class HomePage {
     this.auth.setShop(shop_id);
     this.nav.push('ShopproductsPage');
   }
+  goAddToCart(){
+    this.nav.push("CartPage");
+  }
 }
 
 interface Shops{

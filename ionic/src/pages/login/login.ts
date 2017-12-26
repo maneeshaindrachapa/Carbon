@@ -20,8 +20,10 @@ export class LoginPage {
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {        
-        this.nav.setRoot('HomePage');
+      if (allowed) { 
+        if(allowed.type=="1"){      
+          this.nav.setRoot('HomePage');
+        }
       } else {
         this.showError("Access Denied");
       }

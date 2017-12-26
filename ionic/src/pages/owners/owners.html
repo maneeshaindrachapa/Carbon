@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar color="dark">
+      <ion-title>
+        {{username}}
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content class="add-content" padding>
+    <div class="add-box">
+      
+      <form  #addProductForm="ngForm">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+              
+              <ion-item>
+                <ion-input type="text" placeholder="Product Name" name="productname" [(ngModel)]="addProductDetails.productname" required></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-input type="number" placeholder="Price - Rs" name="price" [(ngModel)]="addProductDetails.price" required min="0.00" step="0.01"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-input type="text" placeholder="Details" name="details" [(ngModel)]="addProductDetails.details" required></ion-input>
+              </ion-item>
+              <ion-item>
+                  <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+                  <button ion-button round icon-left (click)="presentActionSheet()" style="padding:15%;">
+                      <ion-icon name="camera"></ion-icon>Select Image
+                  </button>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col class="add-col">
+            <button ion-button class="submit-btn" full type="submit" [disabled]="!addProductForm.form.valid" (click)="addProduct()">Add Product</button>
+          </ion-col>
+        </ion-row>
+        
+      </form>
+    </div>
+      <ion-col class="add-col">
+          <button ion-button class="submit-btn" full type="button" (click)="showProducts()" >Show All Products</button>
+      </ion-col>
+  </ion-content>
+
+ 

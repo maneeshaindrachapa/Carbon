@@ -8,6 +8,11 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { AuthService } from '../providers/auth-service/auth-service';
 
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { Camera } from '@ionic-native/camera';
+
 @NgModule({
   declarations: [
     MyApp
@@ -24,6 +29,10 @@ import { AuthService } from '../providers/auth-service/auth-service';
   providers: [
     StatusBar,
     SplashScreen,
+    File,
+    Transfer,
+    Camera,
+    FilePath,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService
   ]

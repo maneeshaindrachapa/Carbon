@@ -23,6 +23,8 @@ export class LoginPage {
       if (allowed) { 
         if(allowed.type=="1"){      
           this.nav.setRoot('HomePage');
+        }else if(allowed.type="2"){
+          this.nav.setRoot('OwnersPage');
         }
       } else {
         this.showError("Access Denied");

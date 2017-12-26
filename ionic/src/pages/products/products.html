@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="dark">
+      <ion-title>
+        {{username}}
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+   
+  <ion-content>
+    <ion-searchbar (ionInput)="getProductDetails($event)"></ion-searchbar>
+    <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-card class="ion-card">
+        <img src="../../assets/imgs/product/{{item.picture}}"/>
+        <ion-card-content>
+          <ion-card-title class="ion-card-title">
+          {{item.productname}}
+            </ion-card-title>
+          <h4>Price:{{item.price}}</h4>
+          <p style="white-space:pre-line;">
+          {{item.details}}
+          </p><br>
+          <button ion-button icon-left clear small>
+            <ion-icon ios="ios-open" md="md-open"></ion-icon>
+            <div>More</div>
+          </button>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+    </ion-list>
+  </ion-content>

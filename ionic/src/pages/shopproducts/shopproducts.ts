@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, AlertController,IonicPage } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
@@ -10,11 +10,14 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 export class ShopproductsPage{
 
   username = '';
+  addtocartSuccess = false;
 
   products:Products[]=[];
   items:Products[]=[];
+  quantity:number=1;
+  price:number=1;
 
-  constructor(private nav: NavController, private auth: AuthService) {
+  constructor(private nav: NavController, private auth: AuthService,private alertCtrl: AlertController) {
     this.username=this.auth.getUser();
 
     this.initializeItems(); 
@@ -59,6 +62,41 @@ export class ShopproductsPage{
       });
     }
     return false;
+  }
+
+  addToCart(id,price){
+    this.price=this.quantity * price;
+    this.auth.addToCart(id,this.price,this.quantity).subscribe(res => {
+      this.price=1;
+      if (res) {
+        this.addtocartSuccess = true;
+        this.showPopup("Success", "Added to Cart");
+      } else {
+        this.showPopup("Error", "Problem Adding to Cart");
+      }
+      console.log(res);
+     },
+     error => {
+       console.log(error);
+     });
+  }
+
+  showPopup(title, text) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: text,
+      buttons: [
+        {
+          text: 'OK',
+          handler: data => {
+            if (this.addtocartSuccess) {
+              this.nav.popToRoot();
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
 

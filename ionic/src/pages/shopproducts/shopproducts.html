@@ -25,10 +25,15 @@
           <p style="white-space:pre-line;">
           {{item.details}}
           </p><br>
-          <button ion-button icon-left clear small>
+          <button ion-button icon-left clear small (click)="addToCart(item.id,item.price)">
             <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
             <div>Add to Cart</div>
           </button>
+          <ion-list>
+            <ion-item class="ion-item">
+              <ion-input type="number" placeholder="quantity" name="quantity" [(ngModel)]="quantity" required min="1" step="1"></ion-input>
+            </ion-item>
+          </ion-list>
         </ion-card-content>
       </ion-card>
     </ion-item>

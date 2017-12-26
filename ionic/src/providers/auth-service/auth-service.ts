@@ -69,4 +69,8 @@ export class AuthService {
       observer.complete();
     });
   }
+
+  public addToCart(id,price,quantity){
+    return this.http.post("http://192.168.8.100/carbon/api/addToCart.php",{"username":this.username,"id":id,"price":price,"quantity":quantity}).map(res=>res.json());
+  }
 }

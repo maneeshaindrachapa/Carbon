@@ -24,9 +24,9 @@
         <p style="white-space:pre-line;">
         {{item.description}}
         </p><br>
-        <button ion-button icon-left clear small>
+        <button ion-button icon-left clear small (click)="loadProducts(item.shop_id)">
           <ion-icon ios="ios-open" md="md-open"></ion-icon>
-          <div>More</div>
+          <div>SHOP</div>
         </button>
       </ion-card-content>
     </ion-card>

@@ -1,34 +1,30 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service/auth-service';
- 
+
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-shopproducts',
+  templateUrl: 'shopproducts.html',
 })
-export class HomePage {
+export class ShopproductsPage{
+
   username = '';
 
-  shops:Shops[]=[];
-  items:Shops[]=[];
+  products:Products[]=[];
+  items:Products[]=[];
 
   constructor(private nav: NavController, private auth: AuthService) {
-    this.auth.getUserInfo().subscribe(res => {
-        this.username=res.username;
-      },
-      error => {
-        console.log(error);
-      });
+    this.username=this.auth.getUser();
 
-      this.initializeItems(); 
+    this.initializeItems(); 
   }
 
   initializeItems(){
-    this.auth.getShops().subscribe(shop => {
-      for(let i in shop){
-        this.items.push(shop[i]);
-        this.shops.push(shop[i]);
+    this.auth.getProducts().subscribe(product => {
+      for(let i in product){
+        this.items.push(product[i]);
+        this.products.push(product[i]);
       }
      },
      error => {
@@ -43,10 +39,10 @@ export class HomePage {
   }
 
   initializeSearch(){
-    this.items=this.shops;
+    this.items=this.products;
   }
 
-  getShopDetails(ev: any) {
+  getProductDetails(ev: any) {
     // Reset items back to all of the items
     this.initializeSearch();
 
@@ -56,7 +52,7 @@ export class HomePage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
-        if(item.shopname.toLowerCase().indexOf(val.toLowerCase()) > -1){
+        if(item.productname.toLowerCase().indexOf(val.toLowerCase()) > -1){
           console.log(this.items);
           return item;
         };
@@ -64,15 +60,12 @@ export class HomePage {
     }
     return false;
   }
-
-  loadProducts(shop_id){
-    this.auth.setShop(shop_id);
-    this.nav.push('ShopproductsPage');
-  }
 }
 
-interface Shops{
-  shopname:string,
-  description:string,
-  profilePic:string
+interface Products{
+  shop_id:string,
+  productname:string,
+  price:string,
+  details:string,
+  picture:string
 }

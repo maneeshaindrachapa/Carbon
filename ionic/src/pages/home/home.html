@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="dark">
     <ion-title>
-      Member Area
+      {{username}}
     </ion-title>
     <ion-buttons end>
       <button ion-button (click)="logout()">
@@ -11,7 +11,25 @@
   </ion-navbar>
 </ion-header>
  
-<ion-content class="home" padding>
-  <h3>Welcome inside, {{username}}!</h3>
-  Your Email is: {{email}}
+<ion-content>
+  <ion-searchbar (ionInput)="getShopDetails($event)"></ion-searchbar>
+  <ion-list>
+  <ion-item *ngFor="let item of items">
+    <ion-card>
+      <img src="../../assets/imgs/{{item.profilePic}}"/>
+      <ion-card-content>
+        <ion-card-title>
+        {{item.shopname}}
+          </ion-card-title>
+        <p>
+        {{item.description}}
+        </p>
+        <button ion-button icon-left clear small>
+          <ion-icon ios="ios-open" md="md-open"></ion-icon>
+          <div>More</div>
+        </button>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+  </ion-list>
 </ion-content>

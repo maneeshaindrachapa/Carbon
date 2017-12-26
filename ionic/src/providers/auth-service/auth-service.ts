@@ -38,6 +38,10 @@ export class AuthService {
     console.log(this.username);
     return this.http.post("http://localhost/carbon/api/user.php",{"username":this.username}).map(res=>res.json());
   }
+
+  public getShops(){
+    return this.http.get("http://localhost/carbon/api/shops.php").map(res=>res.json());;
+  }
  
   public logout() {
     return Observable.create(observer => {

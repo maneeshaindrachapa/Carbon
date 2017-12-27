@@ -31,9 +31,6 @@ export class OrdersPage {
       console.log(error);
     });
   }
-
-  
-
   logout(){
     this.auth.logout().subscribe(succ => {
       this.nav.setRoot('LoginPage')

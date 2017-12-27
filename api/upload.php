@@ -1,6 +1,6 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-$target_path = "../ionic/www/assets/imgs/product";
+$target_path = "imgs/product";
  
 $target_path =$target_path.basename( $_FILES['file']['name']);
  

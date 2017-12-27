@@ -10,6 +10,7 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 })
 export class CartPage {
   items:Items[];
+  totalPrice:number=0;
   constructor(private nav: NavController, private auth: AuthService) {
     this.getItems();
   }
@@ -17,6 +18,11 @@ export class CartPage {
   getItems(){
     this.auth.getCart().subscribe(res => {
       this.items=res;
+      this.totalPrice=0;
+      for(let item of this.items){
+        this.totalPrice+=Number(item.pricePay);
+      }
+      console.log(this.totalPrice);
     },
     error => {
       console.log(error);
@@ -37,6 +43,10 @@ export class CartPage {
       this.nav.setRoot('LoginPage')
     });
   }
+  checkout(){
+    this.nav.push('CheckoutPage');
+  }
+
 }
 
 interface Items{
@@ -46,4 +56,5 @@ interface Items{
   price:string;
   productname:string;
   picture:string;
+  pricePay:string;
 }

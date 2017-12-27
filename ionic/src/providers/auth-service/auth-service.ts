@@ -30,7 +30,7 @@ export class AuthService {
       var headers= new Headers();
       headers.append('Content-Type','application/X-www-form=urlencoded');
       this.setUser(credentials.username);
-      return this.http.post("http://192.168.8.100/carbon/api/login.php",{"username":credentials.username,"password":credentials.password}).map(res=>res.json());
+      return this.http.post("http://localhost/carbon/api/login.php",{"username":credentials.username,"password":credentials.password}).map(res=>res.json());
     }
   }
  
@@ -38,29 +38,29 @@ export class AuthService {
     if (credentials.email === null || credentials.password === null||credentials.firstname === null||credentials.lastname === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      return this.http.post("http://192.168.8.100/carbon/api/signup.php",{"username":credentials.username,"firstname":credentials.firstname,"lastname":credentials.lastname,"password":credentials.password}).map(res=>res.json());
+      return this.http.post("http://localhost/carbon/api/signup.php",{"username":credentials.username,"firstname":credentials.firstname,"lastname":credentials.lastname,"password":credentials.password}).map(res=>res.json());
     }
   }
 
   public addProduct(addProductDetails,shop_id){
-    return this.http.post("http://192.168.8.100/carbon/api/addProduct.php",{"shop_id":shop_id,"productname":addProductDetails.productname,"price":addProductDetails.price,"details":addProductDetails.details}).map(res=>res.json());
+    return this.http.post("http://localhost/carbon/api/addProduct.php",{"shop_id":shop_id,"productname":addProductDetails.productname,"price":addProductDetails.price,"details":addProductDetails.details}).map(res=>res.json());
   }
   
   public getUserInfo(){
     console.log(this.username);
-    return this.http.post("http://192.168.8.100/carbon/api/user.php",{"username":this.username}).map(res=>res.json());
+    return this.http.post("http://localhost/carbon/api/user.php",{"username":this.username}).map(res=>res.json());
   }
 
   public getShops(){ //get all shop details
-    return this.http.get("http://192.168.8.100/carbon/api/shops.php").map(res=>res.json());
+    return this.http.get("http://localhost/carbon/api/shops.php").map(res=>res.json());
   }
 
   public getProducts(){
-    return this.http.post("http://192.168.8.100/carbon/api/productDetails.php",{ "shopid":this.shop_id }).map(res=>res.json());
+    return this.http.post("http://localhost/carbon/api/productDetails.php",{ "shopid":this.shop_id }).map(res=>res.json());
   }
 
   public getShopDetails(){
-    return this.http.post("http://192.168.8.100/carbon/api/getShop.php",{"username":this.username}).map(res=>res.json());
+    return this.http.post("http://localhost/carbon/api/getShop.php",{"username":this.username}).map(res=>res.json());
   }
 
   public logout() {
@@ -71,14 +71,14 @@ export class AuthService {
   }
 
   public getCart(){
-    return this.http.post("http://192.168.8.100/carbon/api/getCart.php",{"username":this.username}).map(res=>res.json());
+    return this.http.post("http://localhost/carbon/api/getCart.php",{"username":this.username}).map(res=>res.json());
   }
 
   public removeCart(cart_id){
-    return this.http.post("http://192.168.8.100/carbon/api/removeCart.php",{"cart_id":cart_id}).map(res=>res.json());
+    return this.http.post("http://localhost/carbon/api/removeCart.php",{"cart_id":cart_id}).map(res=>res.json());
   }
 
   public addToCart(id,price,quantity){
-    return this.http.post("http://192.168.8.100/carbon/api/addToCart.php",{"username":this.username,"id":id,"price":price,"quantity":quantity}).map(res=>res.json());
+    return this.http.post("http://localhost/carbon/api/addToCart.php",{"username":this.username,"id":id,"price":price,"quantity":quantity}).map(res=>res.json());
   }
 }

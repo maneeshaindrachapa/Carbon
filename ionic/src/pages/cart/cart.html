@@ -14,13 +14,40 @@
 
 <ion-content padding>
   <ion-card *ngFor="let item of items">
-    <ion-item>
-      <h4>{{item.productname}}</h4>
-      <p>Quantity : {{item.quantity}}</p>
-      <p>Price: Rs:{{item.pricePay}}</p>
-    </ion-item>
-    <ion-item>
-        <ion-icon ios="ios-remove-circle" (click)="removeItem(item.cart_id)" class="ion-icon"></ion-icon>
+    <ion-item style="align-content:flex-start">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <img src="../../assets/imgs/product/{{item.picture}}"   style="border-radius:30%;width:50px !important; height:50px !important;"/>
+          </ion-col>
+          <ion-col col-8>
+            <ion-card-title class="ion-card-title">{{item.productname}}</ion-card-title>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <p>Quantity:{{item.quantity}}&nbsp;</p>
+          </ion-col>
+          <ion-col col-4>
+            <p>Rs:{{item.pricePay}}</p>
+          </ion-col>
+          <ion-col col-4>
+            <ion-icon ios="ios-remove-circle" (click)="removeItem(item.cart_id)" class="ion-icon"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-card>
+  <br>
+    <h4 class="totalPrice">Sub Total: Rs:{{totalPrice}}</h4>
+    <hr>
+    <h4 class="totalPrice">Total: Rs:{{totalPrice}}</h4>
+  <hr><br><hr>
+  <ion-row>
+    <ion-col class="checkout-col">
+      <button ion-button class="checkout-btn" (click)="checkout()">
+          <ion-icon ios="ios-pulse" md="md-pulse"></ion-icon>&nbsp;Check Out
+      </button>
+    </ion-col>
+  </ion-row>
 </ion-content>

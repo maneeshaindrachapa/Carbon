@@ -16,10 +16,11 @@ follow this documentation for more details
 https://cordova.apache.org/docs/en/latest/guide/cli/
 
 also you need to install following cordova plugins
-$ionic cordova plugin add cordova-plugin-camera --save
-$ionic cordova plugin add cordova-plugin-file --save
-$ionic cordova plugin add cordova-plugin-file-transfer --save
-$ionic cordova plugin add cordova-plugin-filepath --save
+
+<br>$ionic cordova plugin add cordova-plugin-camera --save
+<br>$ionic cordova plugin add cordova-plugin-file --save
+<br>$ionic cordova plugin add cordova-plugin-file-transfer --save
+<br>$ionic cordova plugin add cordova-plugin-filepath --save
 
 
 

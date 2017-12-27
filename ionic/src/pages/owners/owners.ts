@@ -83,7 +83,9 @@ export class OwnersPage {
       this.nav.setRoot('LoginPage')
     });
   }
-
+  orders(){
+    this.nav.push('OrdersPage');
+  }
   public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',

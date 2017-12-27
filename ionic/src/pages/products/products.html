@@ -16,7 +16,7 @@
     <ion-list>
     <ion-item *ngFor="let item of items">
       <ion-card class="ion-card">
-        <img src="../../assets/imgs/product/{{item.picture}}"/>
+        <img src="http://localhost/carbon/api/imgs/product/{{item.picture}}"/>
         <ion-card-content>
           <ion-card-title class="ion-card-title">
           {{item.productname}}
@@ -25,9 +25,8 @@
           <p style="white-space:pre-line;">
           {{item.details}}
           </p><br>
-          <button ion-button icon-left clear small>
-            <ion-icon ios="ios-open" md="md-open"></ion-icon>
-            <div>More</div>
+          <button ion-button icon-left clear small (click)="removeItem(item.id)">
+            <ion-icon name="remove-circle" class="ion-icon"></ion-icon>
           </button>
         </ion-card-content>
       </ion-card>

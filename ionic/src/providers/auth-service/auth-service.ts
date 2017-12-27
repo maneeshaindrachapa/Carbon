@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 export class AuthService {
   username:string;
   shop_id:number;
+  totalPrice:number;
 
   constructor(private http:Http){}
   setUser(username){
@@ -22,7 +23,12 @@ export class AuthService {
   getShop(){
     return this.shop_id;
   }
-
+  setTotalPrice(totalPrice){
+    this.totalPrice=totalPrice;
+  }
+  getTotalPrice(){
+    return this.totalPrice;
+  }
   public login(credentials) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
@@ -78,7 +84,21 @@ export class AuthService {
     return this.http.post("http://localhost/carbon/api/removeCart.php",{"cart_id":cart_id}).map(res=>res.json());
   }
 
+  public removeProduct(id){
+    return this.http.post("http://localhost/carbon/api/removeProduct.php",{"id":id}).map(res=>res.json());
+  }
+
   public addToCart(id,price,quantity){
     return this.http.post("http://localhost/carbon/api/addToCart.php",{"username":this.username,"id":id,"price":price,"quantity":quantity}).map(res=>res.json());
+  }
+
+  public checkout(credentials){
+    return this.http.post("http://localhost/carbon/api/checkout.php",{"username":this.username,"firstname":credentials.firstname,"lastname":credentials.lastname,"streetaddress":credentials.streetaddress,'city':credentials.city,'email':credentials.email,'telephone':credentials.telephone}).map(res=>res.json());
+  }
+  public getOrders(){
+    return this.http.post("http://localhost/carbon/api/getOrders.php",{"shop_id":this.shop_id}).map(res=>res.json());
+  }
+  public removeOrder(id){
+    return this.http.post("http://localhost/carbon/api/removeOrder.php",{"order_id":id}).map(res=>res.json());
   }
 }

@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the CheckoutPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NavController, AlertController, IonicPage } from 'ionic-angular';
+import { AuthService } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,52 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CheckoutPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  createSuccess = false;
+  checkoutCredentials = { firstname:'',lastname:'',streetaddress:'', city: '',email:'',telephone:'' };
+  totalPrice:number=0;
+  username:string="";
+
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) {
+    this.totalPrice=this.auth.getTotalPrice();
+    this.username=this.auth.getUser();
+   }
+ 
+  public checkout() {
+    this.auth.checkout(this.checkoutCredentials).subscribe(success => {
+      if (success) {
+        this.createSuccess = true;
+        this.showPopup("Success", "Order Placed");
+      } else {
+        this.showPopup("Error", "Problem Placing Order");
+      }
+    },
+      error => {
+        this.showPopup("Error", error);
+      });
+  }
+ 
+  showPopup(title, text) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: text,
+      buttons: [
+        {
+          text: 'OK',
+          handler: data => {
+            if (this.createSuccess) {
+              this.nav.popToRoot();
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckoutPage');
+  logout(){
+    this.auth.logout().subscribe(succ => {
+      this.nav.setRoot('LoginPage')
+    });
   }
 
 }

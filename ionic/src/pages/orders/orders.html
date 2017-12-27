@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-navbar color="dark">
+      <ion-title>
+        {{username}}
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let item of items">
+    <ion-item style="align-content:flex-start">
+        <ion-card-title class="ion-card-title">
+            {{item.productname}}
+        </ion-card-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <p>{{item.firstname}}&nbsp;{{item.lastname}}</p>
+            <p>{{item.street}} <br> {{item.city}}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-icon ios="ios-call" md="md-call"></ion-icon>&nbsp;{{item.telephone}}
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+              <ion-icon ios="ios-mail" md="md-mail"></ion-icon>&nbsp;{{item.email}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-4>
+            <p>Quantity:{{item.quantity}}&nbsp;</p>
+          </ion-col>
+          <ion-col col-4>
+            <p>Rs:{{item.pricePay}}</p>
+          </ion-col>
+          <ion-col col-4>
+              <ion-icon name="remove-circle" (click)="removeItem(item.order_id)" class="ion-icon" style="float:right;margin:0.5%"></ion-icon>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-item>
+  </ion-card>
+</ion-content>

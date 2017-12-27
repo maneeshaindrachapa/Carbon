@@ -22,6 +22,8 @@ export class ProductsPage {
 
   initializeItems(){
     this.auth.getProducts().subscribe(product => {
+      this.items=[];
+      this.products=[];
       for(let i in product){
         this.items.push(product[i]);
         this.products.push(product[i]);
@@ -37,6 +39,17 @@ export class ProductsPage {
       this.nav.setRoot('LoginPage')
     });
   }
+
+  removeItem(id){
+    console.log(id);
+    this.auth.removeProduct(id).subscribe(res => {
+      this.initializeItems();
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
 
   initializeSearch(){
     this.items=this.products;

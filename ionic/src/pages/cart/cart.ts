@@ -22,6 +22,7 @@ export class CartPage {
       for(let item of this.items){
         this.totalPrice+=Number(item.pricePay);
       }
+      this.auth.setTotalPrice(this.totalPrice);
       console.log(this.totalPrice);
     },
     error => {

@@ -1,18 +1,62 @@
-<!--
-  Generated template for the CheckoutPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>checkout</ion-title>
-  </ion-navbar>
-
+    <ion-navbar color="dark">
+      <ion-title>
+        Checkout
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
 </ion-header>
+   
+  <ion-content class="login-content" padding>
+    <div class="login-box">
+      
+      <form  #checkoutForm="ngForm">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+              
+              <ion-item>
+                <ion-input type="text" placeholder="First Name" name="firstname" [(ngModel)]="checkoutCredentials.firstname" required></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-input type="text" placeholder="Last Name" name="lastname" [(ngModel)]="checkoutCredentials.lastname" required></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-input type="text" placeholder="Street Address" name="streetaddress" [(ngModel)]="checkoutCredentials.streetaddress" required></ion-input>
+              </ion-item>
+              
+              <ion-item>
+                <ion-input type="text" placeholder="City" name="city" [(ngModel)]="checkoutCredentials.city" required></ion-input>
+              </ion-item>
 
+              <ion-item>
+                  <ion-input type="email" placeholder="e-mail" name="email" [(ngModel)]="checkoutCredentials.email" required></ion-input>
+              </ion-item>
 
-<ion-content padding>
-
-</ion-content>
+              <ion-item>
+                  <ion-input type="tel" placeholder="Telephone" name="telephone" [(ngModel)]="checkoutCredentials.telephone" required></ion-input>
+                </ion-item>
+              
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <br>
+        <h4 class="totalPrice">Sub Total: Rs:{{totalPrice}}</h4>
+        <hr>
+        <h4 class="totalPrice">Total: Rs:{{totalPrice}}</h4>
+        <hr>
+        <ion-row>
+          <ion-col class="checkout-col">
+            <button ion-button class="submit-btn" full type="submit" [disabled]="!checkoutForm.form.valid" (click)="checkout()">Place Order</button>
+          </ion-col>
+        </ion-row>
+        
+      </form>
+    </div>
+  </ion-content>

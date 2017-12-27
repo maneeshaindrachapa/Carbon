@@ -19,7 +19,7 @@
   <ion-list>
   <ion-item *ngFor="let item of items">
     <ion-card class="ion-card">
-      <img src="../../assets/imgs/{{item.profilePic}}"/>
+      <img src="http://localhost/carbon/api/imgs/{{item.profilePic}}"/>
       <ion-card-content>
         <ion-card-title class="ion-card-title">
         {{item.shopname}}
@@ -28,7 +28,7 @@
         {{item.description}}
         </p><br>
         <button ion-button icon-left clear small (click)="loadProducts(item.shop_id)">
-          <ion-icon ios="ios-open" md="md-open"></ion-icon>
+          <ion-icon ios="ios-pricetags" md="md-pricetags"></ion-icon>
           <div>SHOP</div>
         </button>
       </ion-card-content>

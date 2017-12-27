@@ -15,7 +15,7 @@ $npm install -g cordova
 follow this documentation for more details
 https://cordova.apache.org/docs/en/latest/guide/cli/
 
-also you need to install following cordova plugins
+#### Also you need to install following cordova plugins
 <br>$ionic cordova plugin add cordova-plugin-camera --save
 <br>$ionic cordova plugin add cordova-plugin-file --save
 <br>$ionic cordova plugin add cordova-plugin-file-transfer --save

@@ -49,7 +49,14 @@ export class AuthService {
   }
 
   public addProduct(addProductDetails,shop_id){
-    return this.http.post("http://localhost/carbon/api/addProduct.php",{"shop_id":shop_id,"productname":addProductDetails.productname,"price":addProductDetails.price,"details":addProductDetails.details}).map(res=>res.json());
+    return this.http.post("http://localhost/carbon/api/addProduct.php",{"shop_id":shop_id,"productname":addProductDetails.productname,"price":addProductDetails.price,"details":addProductDetails.details,"picture":addProductDetails.picture}).map(res=>res.json());
+  }
+
+  public addShop(credentials){
+    return this.http.post("http://localhost/carbon/api/addShop.php",{"shopname":credentials.shopname,"description":credentials.description,"profilePic":credentials.profilePic}).map(res=>res.json());
+  }
+  public makeOwner(credentials){
+    return this.http.post("http://localhost/carbon/api/makeOwner.php",{"ownername":credentials.ownername,"shop_id":credentials.shopid,}).map(res=>res.json());
   }
   
   public getUserInfo(){

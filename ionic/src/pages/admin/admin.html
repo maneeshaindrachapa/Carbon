@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>{{username}}-Admin</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content class="admin-content" padding>
+  <div class="admin-box">
+    Add New Shop<hr>
+    <form  #shopForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Shop Name" name="shopname" [(ngModel)]="shopCredentials.shopname" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Description" name="description" [(ngModel)]="shopCredentials.description" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="URL of Shop&#39;s photo" name="profilePic" [(ngModel)]="shopCredentials.profilePic" required></ion-input>
+            </ion-item>
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="admin-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!shopForm.form.valid" (click)="addShop()">Add Shop</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+
+  <div class="admin-box">
+    Make User an Owner of a Shop <hr>
+    <ion-list inset>
+      <ion-row>
+        <ion-col>
+          <ion-item class="item-inner">
+            <ion-label>Shop Name</ion-label>
+            <ion-select  [(ngModel)]="ownerCredentials.shopid">
+              <ion-option *ngFor="let shop of shops" value="{{shop.shop_id}}">{{shop.shopname}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+
+    <form  #ownerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="ownerCredentials.ownername" required></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="admin-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!ownerForm.form.valid" (click)="makeOwner()">Make an Owner</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>

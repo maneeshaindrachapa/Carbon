@@ -34,12 +34,15 @@
               <ion-item>
                 <ion-input type="text" placeholder="Details" name="details" [(ngModel)]="addProductDetails.details" required></ion-input>
               </ion-item>
+              <!--ion-item>
+                  
+                  <img [src]="imageUrl" style="width: 100%;height:100%;" [hidden]="hideImage"><br>
+                  <button ion-button round icon-left (click)="uploadPhoto()">Upload Image</button>
+                  <button ion-button round icon-left (click)="presentActionSheet()">Click Photo</button>
+              </ion-item-->
               <ion-item>
-                  <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
-                  <button ion-button round icon-left (click)="presentActionSheet()" style="padding:15%;">
-                      <ion-icon name="camera"></ion-icon>Select Image
-                  </button>
-              </ion-item>
+                <ion-input type="text" placeholder="url of product picture" name="picture" [(ngModel)]="addProductDetails.picture" required></ion-input>
+              </ion-item>  
             </ion-list>
           </ion-col>
         </ion-row>

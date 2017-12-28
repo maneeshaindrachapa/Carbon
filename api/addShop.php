@@ -3,8 +3,9 @@ include "Crud.php";
 $crud= new Crud();
 
 $data=json_decode(file_get_contents("php://input"));
+$type=1;
 if(sizeof($data)!=null){
-    $query="INSERT INTO product(shop_id,productname,price,details,picture) VALUES('$data->shop_id','$data->productname','$data->price','$data->details','$data->picture')";
+    $query="INSERT INTO shopdetails(shopname,description,profilePic) VALUES('$data->shopname','$data->description','$data->profilePic')";
 
     $dataExecute=$crud->execute($query);
     echo json_encode($dataExecute);

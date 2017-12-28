@@ -16,17 +16,23 @@ export class LoginPage {
   public createAccount() {
     this.nav.push('RegisterPage');
   }
- 
+  
+  public goToLocation(){
+    this.nav.push('MapPage');
+  }
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) { 
+      if (allowed){ 
+        console.log(allowed.type);
         if(allowed.type=="1"){      
           this.nav.setRoot('HomePage');
-        }else if(allowed.type="2"){
+        }else if(allowed.type=="2"){
           this.nav.setRoot('OwnersPage');
+        }else if(allowed.type=="3"){
+          this.nav.setRoot('AdminPage');
         }
-      } else {
+      }else {
         this.showError("Access Denied");
       }
     },
